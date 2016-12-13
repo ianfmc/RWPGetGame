@@ -2,16 +2,16 @@ var AWS = require('aws-sdk');
 
 exports.handler = function(event, context, callback) {
     
-    var teamID = event.teamID.toString();
+    var gameID = event.gameID.toString();
 
     var docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
-    var teamParams = {
-        TableName : 'Team',
+    var gameParams = {
+        TableName : 'Game',
         Key : {
-            teamID: teamID
+            gameID: gameID
         },
     }
-    docClient.get(teamParams, function(err, data) {
+    docClient.get(gameParams, function(err, data) {
         if (err) {
             callback(new Error('Unknown Team'));
         }
